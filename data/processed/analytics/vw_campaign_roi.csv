@@ -1,0 +1,21 @@
+campaign_id,campaign_name,campaign_type,goal,budget,status,attributed_orders,attributed_customers,attributed_revenue,attributed_profit,campaign_budget,roi_pct
+CAMP0015,Event Campaign 15,Email,Retention,147710.83,Completed,149,122,10823987.29,4729102.9,147710.83,7227.8
+CAMP0008,Social Media Campaign 08,Influencer,Awareness,7473.13,Completed,123,108,9972666.83,4426876.91,7473.13,133347.0
+CAMP0001,Event Campaign 01,Display,Conversion,183622.95,Completed,128,115,9900886.91,4380637.08,183622.95,5292.0
+CAMP0004,Social Media Campaign 04,Display,Conversion,29473.41,Completed,132,113,9312335.27,4150029.88,29473.41,31495.7
+CAMP0007,Email Campaign 07,Event,Retention,170699.43,Completed,131,114,8942601.27,3817638.37,170699.43,5138.8
+CAMP0009,Email Campaign 09,Email,Retention,127070.99,Completed,123,109,8926820.4,3860593.93,127070.99,6925.1
+CAMP0014,Event Campaign 14,Search Ads,Conversion,49598.23,Completed,122,109,8767939.08,3753546.78,49598.23,17577.9
+CAMP0017,Event Campaign 17,Display,Lead Gen,35727.58,Completed,127,113,8681422.79,3742101.83,35727.58,24198.9
+CAMP0012,Event Campaign 12,Email,Conversion,198276.37,Completed,122,109,8628923.05,3773037.13,198276.37,4252.0
+CAMP0019,Display Campaign 19,Search Ads,Lead Gen,26806.35,Completed,130,116,8623357.52,3661962.52,26806.35,32069.1
+CAMP0020,Influencer Campaign 20,Search Ads,Lead Gen,61970.27,Completed,140,126,8550150.6,3761101.36,61970.27,13697.2
+CAMP0003,Event Campaign 03,Social Media,Lead Gen,6511.99,Completed,115,96,8206247.26,3597890.02,6511.99,125917.5
+CAMP0018,Event Campaign 18,Social Media,Retention,62011.02,Completed,146,122,7928075.19,3286654.51,62011.02,12684.9
+CAMP0005,Influencer Campaign 05,Email,Conversion,187759.65,Completed,127,114,7891412.75,3359692.52,187759.65,4102.9
+CAMP0010,Social Media Campaign 10,Influencer,Awareness,194322.58,Completed,125,114,7667468.11,3287448.86,194322.58,3845.7
+CAMP0002,Influencer Campaign 02,Display,Conversion,9994.81,Completed,122,110,7598949.49,3421919.74,9994.81,75929.0
+CAMP0013,Influencer Campaign 13,Social Media,Conversion,47981.78,Completed,118,106,7581158.9799999995,3233864.5,47981.78,15700.1
+CAMP0016,Display Campaign 16,Email,Awareness,196117.72,Completed,124,111,7504760.26,3332094.7600000002,196117.72,3726.7
+CAMP0011,Email Campaign 11,Event,Retention,123163.33,Completed,101,86,7128185.67,3116750.65,123163.33,5687.6
+CAMP0006,Search Ads Campaign 06,Social Media,Conversion,160956.96,Completed,112,102,6752203.9799999995,2931604.38,160956.96,4095.0

@@ -1,0 +1,51 @@
+product_id,product_name,category,price_band,total_units_sold,total_revenue,total_profit,avg_margin_pct,times_ordered,unique_buyers
+PROD0002,Wireless Headset,Electronics,Enterprise,615,55360911.769999996,27196101.17,48.8,204,169
+PROD0008,Tablet,Electronics,Enterprise,672,53628455.04,26093476.8,48.5,228,184
+PROD0006,Keyboard Mech,Electronics,Enterprise,625,36670276.08,18569363.580000002,50.2,216,169
+PROD0010,Docking Station,Electronics,Enterprise,569,22911652.61,8788042.72,38.2,209,171
+PROD0005,Webcam HD,Electronics,Enterprise,590,22402397.82,10350609.42,46.0,200,162
+PROD0015,Cloud Backup,Software,Enterprise,612,15915757.57,6788591.53,42.3,211,174
+PROD0013,Analytics Tool,Software,Enterprise,652,14728510.459999999,6064395.42,41.0,220,175
+PROD0020,HR Module,Software,Enterprise,667,13770180.95,4018574.25,28.6,213,181
+PROD0016,Design Studio,Software,Premium,739,13499164.540000001,5506805.64,40.5,237,183
+PROD0007,Mouse Ergonomic,Electronics,Enterprise,666,13494555.41,6104273.09,45.0,208,165
+PROD0019,Finance Tracker,Software,Enterprise,642,13160052.84,5323627.5,40.1,213,170
+PROD0011,CRM Suite,Software,Enterprise,618,12972050.34,4529428.74,34.5,200,161
+PROD0012,Project Manager,Software,Premium,667,11229744.370000001,4982755.7700000005,44.1,214,175
+PROD0038,Whiteboard Foldable,Furniture,Enterprise,217,10169381.02,5214756.73,50.9,74,68
+PROD0017,Dev IDE Pro,Software,Premium,681,9321311.19,3424988.46,36.4,225,175
+PROD0034,Drawer Cabinet,Furniture,Enterprise,196,8419108.33,3944387.17,46.8,64,58
+PROD0039,Visitor Chair,Furniture,Enterprise,263,8252608.79,2149380.82,25.6,84,77
+PROD0018,Collab Platform,Software,Premium,662,8154441.14,2118497.2600000002,25.6,236,191
+PROD0014,Security Suite,Software,Premium,651,7658477.34,3413566.74,44.4,211,169
+PROD0031,Standing Desk,Furniture,Enterprise,173,7368317.59,3542818.76,47.4,54,50
+PROD0032,Ergonomic Chair,Furniture,Enterprise,185,6858100.55,2584463.65,37.4,64,62
+PROD0040,Footrest,Furniture,Enterprise,179,6293254.82,2129764.94,33.4,59,56
+PROD0036,Meeting Table,Furniture,Enterprise,217,6235812.29,2081692.32,33.1,70,64
+PROD0004,USB-C Hub,Electronics,Premium,660,6126725.88,2934451.08,47.7,223,179
+PROD0003,Smart Monitor,Electronics,Premium,677,6058036.75,1754104.03,28.4,219,182
+PROD0009,SSD External,Electronics,Premium,599,5290780.04,2697511.37,50.9,207,172
+PROD0001,Laptop Pro,Electronics,Premium,671,4460438.75,1607527.92,35.7,218,174
+PROD0037,Locker Unit,Furniture,Premium,174,2601232.82,1175203.64,45.6,68,63
+PROD0035,Bookshelf,Furniture,Premium,185,1968519.06,1011732.36,51.3,69,65
+PROD0033,Monitor Arm,Furniture,Premium,269,1456087.46,513637.89,35.2,88,79
+PROD0023,Laptop Stand,Accessories,Premium,275,1378913.46,681265.96,49.0,87,80
+PROD0021,Cable HDMI 2m,Accessories,Premium,241,1192853.56,597383.53,49.9,79,73
+PROD0025,Power Bank,Accessories,Mid-Range,231,1009287.5,515525.0,50.7,72,63
+PROD0024,Bag,Accessories,Mid-Range,208,941439.72,433543.24,46.0,71,68
+PROD0030,Cable Organiser,Accessories,Mid-Range,203,828315.76,310365.32,36.6,73,68
+PROD0027,Stylus Pen,Accessories,Mid-Range,179,307322.61,126568.41,41.0,64,62
+PROD0026,Wireless Charger,Accessories,Mid-Range,203,280423.08999999997,146079.72,51.8,68,65
+PROD0022,Screen Cleaner Kit,Accessories,Mid-Range,172,250808.5,121535.02,48.3,59,51
+PROD0028,Mouse Pad XL,Accessories,Mid-Range,188,244034.6,103060.92,41.5,60,54
+PROD0046,Stapler Heavy,Stationery,Budget,252,227855.36000000002,93662.84,40.9,83,71
+PROD0029,Webcam Cover,Accessories,Mid-Range,210,210794.39,63815.39,29.8,70,65
+PROD0043,Sticky Notes Pack,Stationery,Budget,179,140326.39,70462.69,49.9,62,59
+PROD0048,Marker Board,Stationery,Budget,214,130521.34,41039.38,30.9,72,71
+PROD0044,Highlighters,Stationery,Budget,235,53647.99,14971.69,27.9,71,67
+PROD0049,File Folder,Stationery,Budget,179,53115.35,18949.62,35.6,63,60
+PROD0042,Pen Set,Stationery,Budget,193,45282.06,22648.95,49.8,66,64
+PROD0041,Notebook Premium,Stationery,Budget,199,37622.82,17426.31,46.3,65,60
+PROD0050,Label Printer,Stationery,Budget,153,28465.92,10326.24,36.8,57,52
+PROD0047,Paper Ream,Stationery,Budget,205,27353.620000000003,11205.77,40.6,69,65
+PROD0045,Binder A4,Stationery,Budget,226,7524.01,2836.77,37.6,75,66
