@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Warehouse Analytics Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────────────── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">📊</div>
+    <div>
+      <div class="brand-name">DataWarehouse</div>
+      <div class="brand-sub">Analytics Dashboard</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">OVERVIEW</div>
+    <a href="#" class="nav-item active" data-section="overview">
+      <span class="nav-icon">🏠</span> Overview
+    </a>
+
+    <div class="nav-section-label">SALES</div>
+    <a href="#" class="nav-item" data-section="trends">
+      <span class="nav-icon">📈</span> Revenue Trends
+    </a>
+    <a href="#" class="nav-item" data-section="breakdown">
+      <span class="nav-icon">🗺️</span> Region & Segment
+    </a>
+    <a href="#" class="nav-item" data-section="channels">
+      <span class="nav-icon">📡</span> Sales Channels
+    </a>
+
+    <div class="nav-section-label">PRODUCTS</div>
+    <a href="#" class="nav-item" data-section="products">
+      <span class="nav-icon">📦</span> Top Products
+    </a>
+    <a href="#" class="nav-item" data-section="categories">
+      <span class="nav-icon">🗂️</span> Categories
+    </a>
+
+    <div class="nav-section-label">CUSTOMERS</div>
+    <a href="#" class="nav-item" data-section="ltv">
+      <span class="nav-icon">👥</span> Customer LTV
+    </a>
+    <a href="#" class="nav-item" data-section="cohort">
+      <span class="nav-icon">🔄</span> Cohort Analysis
+    </a>
+
+    <div class="nav-section-label">MARKETING</div>
+    <a href="#" class="nav-item" data-section="campaigns">
+      <span class="nav-icon">📣</span> Campaigns & ROI
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-text">Data: 2022 – 2024</div>
+    <div class="sidebar-footer-text">SQLite · Flask · Plotly</div>
+  </div>
+</aside>
+
+<!-- ── MAIN CONTENT ─────────────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div id="section-title" class="topbar-title">Overview</div>
+      <div class="topbar-subtitle">Sales & Marketing Intelligence · 3 Years of Data</div>
+    </div>
+    <div class="topbar-right">
+      <div class="status-dot"></div>
+      <span class="status-text">Live Database</span>
+    </div>
+  </header>
+
+  <!-- ── SECTION: OVERVIEW ────────────────────────────────────────────── -->
+  <section id="section-overview" class="section active">
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid" id="kpi-cards">
+      <div class="kpi-card loading" id="kpi-revenue">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-value" id="val-revenue">—</div>
+        <div class="kpi-label">Total Revenue</div>
+        <div class="kpi-sub" id="sub-revenue">3 years combined</div>
+      </div>
+      <div class="kpi-card loading" id="kpi-profit">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-value" id="val-profit">—</div>
+        <div class="kpi-label">Total Profit</div>
+        <div class="kpi-sub" id="sub-profit">avg margin</div>
+      </div>
+      <div class="kpi-card loading" id="kpi-orders">
+        <div class="kpi-icon">🛒</div>
+        <div class="kpi-value" id="val-orders">—</div>
+        <div class="kpi-label">Completed Orders</div>
+        <div class="kpi-sub" id="sub-orders">avg order value</div>
+      </div>
+      <div class="kpi-card loading" id="kpi-customers">
+        <div class="kpi-icon">👥</div>
+        <div class="kpi-value" id="val-customers">—</div>
+        <div class="kpi-label">Unique Customers</div>
+        <div class="kpi-sub" id="sub-customers">YoY growth</div>
+      </div>
+    </div>
+
+    <!-- Overview charts row 1 -->
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue Trend — Monthly</div>
+          <div class="chart-subtitle">All 3 years combined</div>
+        </div>
+        <div id="chart-overview-trend" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue by Category</div>
+          <div class="chart-subtitle">Share of total revenue</div>
+        </div>
+        <div id="chart-overview-category" class="chart-body"></div>
+      </div>
+    </div>
+
+    <!-- Overview charts row 2 -->
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue by Region</div>
+          <div class="chart-subtitle">All years combined</div>
+        </div>
+        <div id="chart-overview-region" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Customer LTV Tiers</div>
+          <div class="chart-subtitle">Revenue concentration</div>
+        </div>
+        <div id="chart-overview-ltv" class="chart-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: TRENDS ──────────────────────────────────────────────── -->
+  <section id="section-trends" class="section">
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Monthly Revenue & Profit Trend</div>
+          <div class="chart-subtitle">Jan 2022 – Dec 2024</div>
+        </div>
+        <div id="chart-monthly" class="chart-body tall"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Year-over-Year Comparison</div>
+          <div class="chart-subtitle">Same month across 2022, 2023, 2024</div>
+        </div>
+        <div id="chart-yoy" class="chart-body tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: BREAKDOWN ───────────────────────────────────────────── -->
+  <section id="section-breakdown" class="section">
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue by Region</div>
+          <div class="chart-subtitle">All years combined</div>
+        </div>
+        <div id="chart-region" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue by Customer Segment</div>
+          <div class="chart-subtitle">Enterprise · SMB · Startup · Consumer</div>
+        </div>
+        <div id="chart-segment" class="chart-body"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Region Performance — Detailed</div>
+          <div class="chart-subtitle">Revenue, Profit and Margin by Region</div>
+        </div>
+        <div id="chart-region-detail" class="chart-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: CHANNELS ────────────────────────────────────────────── -->
+  <section id="section-channels" class="section">
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue by Sales Channel</div>
+          <div class="chart-subtitle">Online · Partner · Direct · Sales Rep</div>
+        </div>
+        <div id="chart-channel-bar" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Channel Revenue Share</div>
+          <div class="chart-subtitle">Percentage breakdown</div>
+        </div>
+        <div id="chart-channel-pie" class="chart-body"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Channel Metrics Comparison</div>
+          <div class="chart-subtitle">Revenue · Profit · Avg Order Value · Margin</div>
+        </div>
+        <div id="chart-channel-detail" class="chart-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: PRODUCTS ────────────────────────────────────────────── -->
+  <section id="section-products" class="section">
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Top 15 Products by Revenue</div>
+          <div class="chart-subtitle">Revenue vs Profit — coloured by category</div>
+        </div>
+        <div id="chart-products-bar" class="chart-body tall"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue vs Margin — Product Scatter</div>
+          <div class="chart-subtitle">Bubble size = units sold</div>
+        </div>
+        <div id="chart-products-scatter" class="chart-body tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: CATEGORIES ──────────────────────────────────────────── -->
+  <section id="section-categories" class="section">
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Category Revenue Breakdown</div>
+          <div class="chart-subtitle">Revenue share by category</div>
+        </div>
+        <div id="chart-cat-donut" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Category Profit Margins</div>
+          <div class="chart-subtitle">Avg margin % per category</div>
+        </div>
+        <div id="chart-cat-margin" class="chart-body"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue vs Cost vs Profit by Category</div>
+          <div class="chart-subtitle">Stacked comparison</div>
+        </div>
+        <div id="chart-cat-waterfall" class="chart-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: LTV ─────────────────────────────────────────────────── -->
+  <section id="section-ltv" class="section">
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Customer LTV Tier Distribution</div>
+          <div class="chart-subtitle">Platinum · Gold · Silver · Bronze</div>
+        </div>
+        <div id="chart-ltv-donut" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Revenue Concentration by Tier</div>
+          <div class="chart-subtitle">% of total revenue per tier</div>
+        </div>
+        <div id="chart-ltv-revenue" class="chart-body"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Top 10 Customers by Lifetime Value</div>
+          <div class="chart-subtitle">All-time revenue per customer</div>
+        </div>
+        <div id="chart-ltv-top" class="chart-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: COHORT ──────────────────────────────────────────────── -->
+  <section id="section-cohort" class="section">
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Monthly Cohort Revenue Heatmap</div>
+          <div class="chart-subtitle">Customers grouped by first purchase month — tracked over time</div>
+        </div>
+        <div id="chart-cohort" class="chart-body tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: CAMPAIGNS ───────────────────────────────────────────── -->
+  <section id="section-campaigns" class="section">
+    <div class="chart-row two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Campaign Budget vs Revenue</div>
+          <div class="chart-subtitle">Coloured by campaign type</div>
+        </div>
+        <div id="chart-camp-scatter" class="chart-body"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">ROI by Campaign Type</div>
+          <div class="chart-subtitle">Average return on investment</div>
+        </div>
+        <div id="chart-camp-roi" class="chart-body"></div>
+      </div>
+    </div>
+    <div class="chart-row one-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Top Campaigns by Attributed Revenue</div>
+          <div class="chart-subtitle">All campaigns ranked</div>
+        </div>
+        <div id="chart-camp-bar" class="chart-body tall"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
