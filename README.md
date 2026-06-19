@@ -146,4 +146,4 @@ data-warehouse-analytics/
 
 ---
 
-*Built as a portfolio project demonstrating end-to-end data engineering.*
+
