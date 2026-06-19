@@ -1,26 +1,16 @@
 # Data Warehouse & Analytics Dashboard
 
-> End-to-end data engineering project — ETL pipeline → Star schema warehouse → Interactive analytics dashboard.
+> End-to-end data engineering project — ETL pipeline → Star schema warehouse → Interactive analytics dashboard → Live on Render.
 
-![Python](https://img.shields.io/badge/Python-3.12-blue) ![Flask](https://img.shields.io/badge/Flask-3.x-green) ![Plotly](https://img.shields.io/badge/Plotly-5.x-orange) ![Tests](https://img.shields.io/badge/Tests-85%20passing-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.12-blue) ![Flask](https://img.shields.io/badge/Flask-3.x-green) ![Plotly](https://img.shields.io/badge/Plotly-5.x-orange) ![Tests](https://img.shields.io/badge/Tests-85%20passing-brightgreen) ![Render](https://img.shields.io/badge/Hosted-Render-purple)
 
 ---
 
-## Live Dashboard
+## 🚀 Live Demo
 
-8 sections · 18 interactive Plotly charts · Real-time data from SQLite warehouse
+**[View Dashboard →](https://data-warehouse-analytics.onrender.com)**
 
-| Section | Charts |
-|---|---|
-| Overview | KPI cards, revenue trend, category donut, region bar, LTV donut |
-| Revenue Trends | Monthly revenue+profit+orders, year-over-year grouped bar |
-| Region & Segment | Region bar, segment donut, region detail comparison |
-| Sales Channels | Channel bar, channel pie, channel detail with margin |
-| Top Products | Revenue vs profit bar, revenue vs margin scatter |
-| Categories | Category donut, margin bar, cost vs profit stacked bar |
-| Customer LTV | Tier donut, revenue concentration, top 10 customers |
-| Cohort Analysis | Monthly cohort revenue heatmap |
-| Campaigns & ROI | Budget vs revenue scatter, ROI by type, all campaigns bar |
+> Hosted on Render free tier — may take 30–60 seconds to wake up on first visit.
 
 ---
 
@@ -31,8 +21,8 @@ Raw Sources (CSV/JSON)
        │
   ┌────▼────┐    ┌──────────┐    ┌────────────┐
   │ Extract │───▶│Transform │───▶│   Load     │
-  └─────────┘    └──────────┘    └─────┬──────┘
-                                       │ Staging DB
+  └─────────┘    └──────────┘    └────────────┘
+                                       │ Staging DB (SQLite)
                                ┌───────▼────────┐
                                │  Star Schema   │
                                │  fact_sales    │
@@ -41,10 +31,16 @@ Raw Sources (CSV/JSON)
                                │  dim_date      │
                                │  dim_campaign  │
                                └───────┬────────┘
-                                       │ 10 KPI Views
+                                       │ 10 KPI SQL Views
                                ┌───────▼────────┐
-                               │ Flask + Plotly │
-                               │   Dashboard    │
+                               │ Flask REST API │
+                               │ 11 Endpoints   │
+                               └───────┬────────┘
+                                       │
+                               ┌───────▼────────┐
+                               │ Plotly.js UI  │
+                               │ 8 Sections    │
+                               │ 18 Charts     │
                                └────────────────┘
 ```
 
@@ -54,14 +50,15 @@ Raw Sources (CSV/JSON)
 |---|---|
 | Language | Python 3.12 |
 | Data Processing | Pandas, NumPy |
-| Database | SQLite / PostgreSQL |
+| Database | SQLite (warehouse.db committed to repo) |
 | ORM | SQLAlchemy |
 | Web Framework | Flask 3.x |
+| WSGI Server | Gunicorn |
 | Charts | Plotly.js |
 | Testing | pytest (85 tests) |
-| Logging | loguru |
+| Hosting | Render |
 
-## Quick Start
+## Quick Start (Local)
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/data-warehouse-analytics
@@ -73,7 +70,7 @@ source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env
 
-# Run full pipeline (generate data → ETL → warehouse → analytics)
+# Run full pipeline (generate → ETL → warehouse → analytics)
 python run_pipeline.py
 
 # Run all 85 tests
@@ -84,29 +81,47 @@ python dashboard/app.py
 # Open: http://127.0.0.1:5000
 ```
 
-## Data Model
+## Deploying to Render (Free)
 
-| Table | Rows | Description |
-|---|---|---|
-| `fact_sales` | 10,528 | One row per order line item (grain) |
-| `dim_date` | 1,096 | Every calendar day 2022–2024 |
-| `dim_customer` | 500 | Customer demographics & segments |
-| `dim_product` | 50 | Product catalog with pricing |
-| `dim_campaign` | 20 | Marketing campaigns |
+1. Push this repo to GitHub
+2. Go to [render.com](https://render.com) → New → Web Service
+3. Connect your GitHub repo
+4. Render auto-detects `render.yaml` — click **Deploy**
+5. Done — live in ~3 minutes
 
-## Key Metrics (Sample Data)
+## Dashboard Sections
 
-- **Total Revenue:** ₹41.38 Crore across 3 years
-- **Total Profit:** ₹18.00 Crore at 41% avg margin
-- **Orders:** 3,024 completed orders
-- **Top Category:** Electronics (54.7% of revenue)
-- **Top Region:** North India (₹10.78 Cr)
+| Section | Charts |
+|---|---|
+| Overview | KPI cards, revenue trend, category donut, region bar, LTV donut |
+| Revenue Trends | Monthly revenue+profit+orders, year-over-year comparison |
+| Region & Segment | Region bars, customer segment donut, region detail |
+| Sales Channels | Channel bar, channel pie, channel metrics comparison |
+| Top Products | Revenue vs profit bar, revenue vs margin scatter |
+| Categories | Category donut, margin bar, cost vs profit stacked bar |
+| Customer LTV | Tier donut, revenue concentration, top 10 customers |
+| Cohort Analysis | Monthly cohort revenue heatmap |
+| Campaigns & ROI | Budget vs revenue scatter, ROI by type, all campaigns bar |
+
+## Key Metrics (Sample Data — 2022–2024)
+
+| Metric | Value |
+|---|---|
+| Total Revenue | ₹41.38 Crore |
+| Total Profit | ₹18.00 Crore |
+| Avg Margin | 41% |
+| Completed Orders | 3,024 |
+| Unique Customers | 498 |
+| Top Category | Electronics (54.7% of revenue) |
+| YoY Growth (2023→2024) | +14.3% |
 
 ## Project Structure
 
 ```
 data-warehouse-analytics/
-├── data/raw/              ← Source CSV + JSON files
+├── data/
+│   ├── raw/               ← Source CSV + JSON (gitignored)
+│   └── warehouse.db       ← SQLite warehouse (committed — used by Render)
 ├── etl/
 │   ├── generate_data.py   ← Synthetic data generator
 │   ├── extract.py         ← Read & validate raw files
@@ -119,10 +134,12 @@ data-warehouse-analytics/
 │   ├── kpi_queries.sql    ← 10 KPI SQL views
 │   └── run_analytics.py   ← Runs & exports KPIs
 ├── dashboard/
-│   ├── app.py             ← Flask application (11 API routes)
+│   ├── app.py             ← Flask app (11 API routes)
 │   ├── templates/         ← HTML dashboard
 │   └── static/            ← CSS + Plotly JS
-├── tests/                 ← 85 tests (ETL + Warehouse + Dashboard)
+├── tests/                 ← 85 automated tests
+├── Procfile               ← Render/Gunicorn start command
+├── render.yaml            ← Render deployment config
 ├── run_pipeline.py        ← Master pipeline runner
 └── requirements.txt
 ```

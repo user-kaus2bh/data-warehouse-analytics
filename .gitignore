@@ -1,32 +1,25 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 *.pyd
-.Python
 *.egg-info/
 dist/
 build/
-.eggs/
 
 # Virtual environments
 venv/
 .venv/
 env/
-.env/
 
-# Environment variables (keep .env.example)
+# Environment variables
 .env
 
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-
-# Data files (keep structure, not data)
+# ⚠️  NOTE: warehouse.db IS committed to GitHub so Render can use it
+# Only exclude raw/processed data files (large, regeneratable)
 data/raw/*.csv
 data/raw/*.json
 data/processed/*.csv
+data/processed/analytics/*.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
@@ -38,15 +31,10 @@ logs/
 .vscode/
 .idea/
 *.swp
-*.swo
 .DS_Store
 Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
-# Coverage
+# pytest
+.pytest_cache/
 .coverage
 htmlcov/
-.pytest_cache/
