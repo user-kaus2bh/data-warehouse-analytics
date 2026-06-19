@@ -61,7 +61,7 @@ Raw Sources (CSV/JSON)
 ## Quick Start (Local)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/data-warehouse-analytics
+git clone https://github.com/user-kaus2bh/data-warehouse-analytics
 cd data-warehouse-analytics
 
 python -m venv venv
@@ -81,13 +81,7 @@ python dashboard/app.py
 # Open: http://127.0.0.1:5000
 ```
 
-## Deploying to Render (Free)
 
-1. Push this repo to GitHub
-2. Go to [render.com](https://render.com) → New → Web Service
-3. Connect your GitHub repo
-4. Render auto-detects `render.yaml` — click **Deploy**
-5. Done — live in ~3 minutes
 
 ## Dashboard Sections
 
