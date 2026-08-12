@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Live Demo
+##  Live Demo
 
 **[View Dashboard →](https://data-warehouse-analytics.onrender.com)**
 
